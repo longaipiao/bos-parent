@@ -59,17 +59,19 @@ input[type=password] {
 			</div>
 			<div class="loginForm">
 				<form id="loginform" name="loginform" method="post" class="niceform"
-					action="">
+					action="userAction_login">
 					<div id="idInputLine" class="loginFormIpt showPlaceholder"
 						style="margin-top: 5px;">
+						<%--@declare id="idinput"--%>
 						<input id="loginform:idInput" type="text" name="username"
-							class="loginFormTdIpt" maxlength="50" />
+							   class="loginFormTdIpt" maxlength="50" />
 						<label for="idInput" class="placeholder" id="idPlaceholder">帐号：</label>
 					</div>
 					<div class="forgetPwdLine"></div>
 					<div id="pwdInputLine" class="loginFormIpt showPlaceholder">
+						<%--@declare id="pwdinput"--%>
 						<input id="loginform:pwdInput" class="loginFormTdIpt" type="password"
-							name="password" value="" />
+							   name="password" value="" />
 						<label for="pwdInput" class="placeholder" id="pwdPlaceholder">密码：</label>
 					</div>
 					<div class="loginFormIpt loginFormIptWiotTh"
@@ -81,22 +83,21 @@ input[type=password] {
 							<img id="loginform:vCode" src="${pageContext.request.contextPath }/validatecode.jsp"
 								onclick="javascript:document.getElementById('loginform:vCode').src='${pageContext.request.contextPath }/validatecode.jsp?'+Math.random();" />
 						</div>
-						<a href="${pageContext.request.contextPath}/page_common_index.action" id="loginform:j_id19" name="loginform:j_id19">
-						<span
-							id="loginform:loginBtn" class="btn btn-login"
-							style="margin-top:-36px;">登录</span>
+						<a onclick="document.getElementById('loginform').submit();" href="#" id="loginform:j_id19" name="loginform:j_id19">
+						<span id="loginform:loginBtn" class="btn btn-login"
+							  style="margin-top:-36px;">登录</span>
 						</a>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	<div
+	<%--<div
 		style="width: 900px; height: 50px; position: absolute; text-align: left; left: 50%; top: 50%; margin-left: -450px;; margin-top: 220px;">
 		<span style="color: #488ED5;">Powered By www.itcast.cn</span><span
 			style="color: #488ED5;margin-left:10px;">推荐浏览器（右键链接-目标另存为）：<a
 			href="http://download.firefox.com.cn/releases/full/23.0/zh-CN/Firefox-full-latest.exe">Firefox</a>
 		</span>
-	</div>
+	</div>--%>
 </body>
 </html>

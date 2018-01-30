@@ -22,14 +22,14 @@
         <!-- 注入hibernate相关的属性配置 -->
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
             </props>
         </property>
-        <!-- 引入orm元数据,指定orm元数据所在的包路径,spring会自动读取包中的所有配置 -->
-       <!-- <property name="mappingLocations" value="classpath:/com/cock/bos/domain"/>-->
+        <!-- 引入orm元数据,指定orm元数据所在的包路径,spring会自动读取包中的所有配置 错误修改，解决Hibernate无法加载-->
+        <property name="mappingLocations" value="classpath:com/cock/bos/domain/*.xml"></property>
     </bean>
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
