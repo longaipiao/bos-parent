@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.cock.bos.domain">
+    <class name="Region" table="bc_region">
+        <id name="id">
+            <generator class="assigned"></generator>
+        </id>
+        <property name="province" column="province"></property>
+        <property name="city" column="city"></property>
+        <property name="district" column="district"></property>
+        <property name="postcode" column="postcode"></property>
+        <property name="shortcode" column="shortcode"></property>
+        <property name="citycode" column="citycode"></property>
+        <set name="subareas" inverse="true">
+            <key column="region_id"></key>
+            <one-to-many class="Subarea"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

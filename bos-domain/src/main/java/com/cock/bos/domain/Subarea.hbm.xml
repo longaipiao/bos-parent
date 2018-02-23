@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.cock.bos.domain">
+    <class name="Subarea" table="bc_subarea">
+        <id name="id">
+            <generator class="assigned"></generator>
+        </id>
+        <!--多对一-->
+        <many-to-one name="decidedzone" column="decidedzone_id" class="Decidedzone"></many-to-one>
+        <many-to-one name="region" column="region_id" class="Region"></many-to-one>
+        <property name="addresskey" column="addresskey"></property>
+        <property name="startnum" column="startnum"></property>
+        <property name="endnum" column="endnum"></property>
+        <property name="single" column="single"></property>
+        <property name="position" column="position"></property>
+    </class>
+</hibernate-mapping>

@@ -19,9 +19,15 @@ public class UserAction extends BaseAction<User> {
     //属性驱动，接收页面输入的验证码
     private String checkcode;
 
+    private User user;
+
     @Autowired
     private IUserService userService;
 
+    public  String resist(){
+        System.out.println("11111111111111111111");
+        return LOGIN;
+    }
     public String login(){
         //从Session中获取生成的验证码
         String validatecode = (String) ServletActionContext.getRequest().getSession().getAttribute("key");

@@ -74,7 +74,7 @@
 		window.setTimeout(function(){
 			$.messager.show({
 				title:"消息提示",
-				msg:'欢迎登录，超级管理员！ <a href="javascript:void" onclick="top.showAbout();">联系管理员</a>',
+				msg:'欢迎登录，${loginUser.username }！ <a href="javascript:void" onclick="top.showAbout();">联系管理员</a>',
 				timeout:5000
 			});
 		},3000);
@@ -85,7 +85,27 @@
 		});
 		
 		$("#btnEp").click(function(){
-			alert("修改密码");
+			//alert("修改密码");
+			var v = $("#editPasswordForm").form("validate");
+            //表单校验通过，手动校验两次输入是否一致
+            var newPass = $("#txtNewPass").val();
+            var rePass = $("#txtRePass").val();
+            if(newPass == rePass){
+                //两次输入一致，发送ajax请求
+				var url = "${pageContext.request.contextPath}/userAction_editPassword";
+                $.post(url,{"password":newPass},function(data){
+                    if(data == '1'){
+                        //修改成功，关闭修改密码窗口
+                        $("#editPwdWindow").window("close");
+                    }else{
+                        //修改密码失败，弹出提示
+                        $.messager.alert("提示信息","密码修改失败！","error");
+                    }
+                });
+            }else{
+                //两次输入不一致，弹出错误提示
+                $.messager.alert("提示信息","两次密码输入不一致！","warning");
+            }
 		});
 	});
 
@@ -161,7 +181,7 @@
 		style="height:80px;padding:10px;background:url(${pageContext.request.contextPath }/images/header_bg.png) no-repeat right;">
 		<div id="sessionInfoDiv"
 			style="position: absolute;right: 5px;top:10px;">
-			[<strong>超级管理员</strong>]，欢迎你！
+			[<strong>${loginUser.username }</strong>]，欢迎你！
 		</div>
 		<div style="position: absolute; right: 5px; bottom: 10px; ">
 			<a href="javascript:void(0);" class="easyui-menubutton"
@@ -228,16 +248,18 @@
         background: #fafafa">
         <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-                <table cellpadding=3>
-                    <tr>
-                        <td>新密码：</td>
-                        <td><input id="txtNewPass" type="Password" class="txt01" /></td>
-                    </tr>
-                    <tr>
-                        <td>确认密码：</td>
-                        <td><input id="txtRePass" type="Password" class="txt01" /></td>
-                    </tr>
-                </table>
+				<form id="editPasswordForm">
+					<table cellpadding=3>
+						<tr>
+							<td>新密码：</td>
+							<td><input required="true" id="txtNewPass" type="Password" class="txt01 easyui-validatebox" data-options="validType:'length[4,6]'" /></td>
+						</tr>
+						<tr>
+							<td>确认密码：</td>
+							<td><input required="true" id="txtRePass" type="Password" class="txt01 easyui-validatebox" data-options="validType:'length[4,6]'" /></td>
+						</tr>
+					</table>
+				</form>
             </div>
             <div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
                 <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)" >确定</a> 
