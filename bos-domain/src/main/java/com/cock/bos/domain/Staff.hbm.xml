@@ -19,4 +19,8 @@
             <one-to-many class="Decidedzone"></one-to-many>
         </set>
     </class>
+    <!-- 取派员逻辑删除,放错位置可能解析不出来 -->
+    <query name="staff.delete">
+        UPDATE Staff SET deltag = '1' WHERE id = ?
+    </query>
 </hibernate-mapping>

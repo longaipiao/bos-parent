@@ -14,7 +14,7 @@ public class Staff implements Serializable {
     private String name;
     private String telephone;
     private String haspda = "0";//是否有PDA，1：有 0：无
-    private String deltag;
+    private String deltag;//删除标志位
     private String station;
     private String standard;
     private Set decidedzones = new HashSet(0);
