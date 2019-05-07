@@ -7,3 +7,8 @@
 [![Project progress](http://progressed.io/bar/5?title=completed)](https://github.com/fengchuikukudehailiang/bos-parent)
 
 1.项目效果
+
+http://129.211.17.73:8080/bos/
+
+username:admin
+pwd:123456
